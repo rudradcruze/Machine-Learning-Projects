@@ -5,7 +5,8 @@ import streamlit as st
 from streamlit_option_menu import option_menu
 
 from gemini_utility import (load_gemini_pro_model,
-                            gemini_pro_vision_response)
+                            gemini_pro_vision_response,
+                            embedding_model_response)
 
 working_directory = os.path.dirname(os.path.abspath(__file__))
 
@@ -84,3 +85,14 @@ if selected == 'Image Description':
 
         with col2:
             st.info(caption)
+
+if selected == 'Embed Text':
+    st.title("🔠 Embed Text")
+
+    # input text box
+    input_text = st.text_area(label="", placeholder="Enter the text to get the embeddings")
+
+    if st.button("Get Embeddings"):
+        response = embedding_model_response(input_text)
+        st.markdown(response)
+
