@@ -37,3 +37,11 @@ def embedding_model_response(input_text):
                                     task_type="retrieval_document")
     embedding_list = embedding["embedding"]
     return embedding_list
+
+
+# function to get a response from gemini-pro LLM
+def gemini_pro_response(user_prompt):
+    gemini_pro_model = genai.GenerativeModel("gemini-pro")
+    response = gemini_pro_model.generate_content(user_prompt)
+    result = response.text
+    return result

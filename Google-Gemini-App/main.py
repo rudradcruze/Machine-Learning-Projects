@@ -6,7 +6,8 @@ from streamlit_option_menu import option_menu
 
 from gemini_utility import (load_gemini_pro_model,
                             gemini_pro_vision_response,
-                            embedding_model_response)
+                            embedding_model_response,
+                            gemini_pro_response)
 
 working_directory = os.path.dirname(os.path.abspath(__file__))
 
@@ -86,6 +87,7 @@ if selected == 'Image Description':
         with col2:
             st.info(caption)
 
+# text embedding page
 if selected == 'Embed Text':
     st.title("🔠 Embed Text")
 
@@ -96,3 +98,12 @@ if selected == 'Embed Text':
         response = embedding_model_response(input_text)
         st.markdown(response)
 
+
+if selected == 'Ask me anything':
+    st.title("⁇ Ask me a question")
+
+    # text box to enter prompt
+    user_prompt = st.text_area(label="", placeholder="Ask Gemini Pro")
+    if st.button("Get answer"):
+        response = gemini_pro_response(user_prompt)
+        st.markdown(response)
